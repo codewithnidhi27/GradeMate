@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard - Published Tests</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f7f7f7; }
+        .container { max-width: 900px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 8px; }
+        h2 { margin-bottom: 24px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
+        th { background: #f0f0f0; }
+        tr:hover { background: #f9f9f9; }
+        .no-tests { color: #888; font-size: 1.1em; }
+        .dashboard-button {
+        background-color: #f44336; /* Red background */
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none; /* Removes underline from link */
+        font-size: 16px;
+        font-weight: bold;
+        display: inline-block; /* Allows padding and margin to work like a button */
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        }
+
+        .dashboard-button:hover {
+        background-color: #d32f2f; /* Darker red on hover */
+        }
+
+        .dashboard-button:active {
+        background-color: #b71c1c; /* Even darker when pressed */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2> Welcome{{usn}}</h2>
+    <h2>Available Published Tests</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% if tests and tests|length > 0 %}
+    <table>
+        <thead>
+            <tr>
+                <th>Test ID</th>
+                <th>Subject</th>
+                <th>Section</th>
+                <th>Semester</th>
+                <th>Total Questions</th>
+                <th>Total Time (min)</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for test in tests %}
+            <tr> <td>
+                    {% if test[0] in attempted %}
+                        <span style="color:gray; text-decoration:line-through; cursor:not-allowed;">{{ test[0] }} (Attempted)</span>
+                        <a href="{{ url_for('view_test_result', test_id=test[0]) }}">View Result</a>
+                        {% else %}
+                        <a href="{{ url_for('start_test', test_id=test[0]) }}" style="color:#007BFF; text-decoration:underline;">
+                            {{ test[0] }}
+                        </a>  
+                    {% endif %}
+
+                </td>
+
+                <td>{{ test[1] }}</td>
+                <td>{{ test[2] }}</td>
+                <td>{{ test[3] }}</td>
+                <td>{{ test[4] }}</td>
+                <td>{{ test[5] }}</td>
+                <td>{{ test[6] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p class="no-tests">No published tests are available at this time.</p>
+    {% endif %}
+    <a href="{{ url_for('logout') }}" class="dashboard-button" >Logout</a>
+</div>
+</body>
+</html>

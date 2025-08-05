@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <h2 class="admin-title">Welcome Admin</h2>
+
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>ID Card</th>
+                    <th>Live Photo</th>
+                    <th>Status</th>
+                    <th>Approve</th>
+                    <th>Decline</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for teacher in teachers %}
+                <tr>
+                    <td>{{ teacher[0] }}</td>
+                    <td>{{ teacher[1] }}</td>
+                    <td>
+                        <a href="{{ url_for('uploaded_file', folder='id_cards', filename=teacher[2].replace('\\', '/').split('/')[-1]) }}" target="_blank">
+                            <img src="{{ url_for('uploaded_file', folder='id_cards', filename=teacher[2].replace('\\', '/').split('/')[-1]) }}" alt="ID Card" class="image-preview">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('uploaded_file', folder='live_photos', filename=teacher[3].replace('\\', '/').split('/')[-1]) }}" target="_blank">
+                            <img src="{{ url_for('uploaded_file', folder='live_photos', filename=teacher[3].replace('\\', '/').split('/')[-1]) }}" alt="Live Photo" class="image-preview">
+                        </a>
+                    </td>
+                    <td class="status status-{{ teacher[4]|lower }}">{{ teacher[4] }}</td>
+                    <td>
+                        <form method="post" action="{{ url_for('approve_teacher', emp_id=teacher[0]) }}">
+                            <button type="submit" class="action-btn approve-btn">Approve</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="{{ url_for('decline_teacher', emp_id=teacher[0]) }}">
+                            <button type="submit" class="action-btn decline-btn">Decline</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="{{ url_for('remove_teacher', emp_id=teacher[0]) }}">
+                            <button type="submit" class="action-btn remove-btn">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <button onclick="window.location.href='/'" class="btn home-btn">Logout</button>
+    </div>
+</body>
+</html>

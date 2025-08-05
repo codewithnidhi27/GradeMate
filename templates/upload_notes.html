@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Notes</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f7f7f7; padding: 20px; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input[type="text"], select, input[type="file"] {
+            width: 100%; padding: 10px; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 20px; padding: 12px 20px; background-color: #4b6cb7; color: white; border: none; border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover { background-color: #3a5a9e; }
+        .flash { margin-bottom: 15px; padding: 10px; border-radius: 5px; }
+        .flash-success { background-color: #d4edda; color: #155724; }
+        .flash-error { background-color: #f8d7da; color: #721c24; }
+        .dashboard-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .dashboard-button:hover {
+            background-color: #0056b3;
+        }
+        .notes-list {
+            margin-top: 30px;
+            background: #f1f1f1;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .note-delete-form {
+            display: inline;
+        }
+        .note-btn {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.2s;
+        }
+        .note-btn:hover {
+            background-color: #c82333;
+        }
+        .note-info {
+            font-size: 0.95em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload Notes</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" enctype="multipart/form-data">
+            <label for="subject_name">Subject Name</label>
+            <input type="text" id="subject_name" name="subject_name" required>
+
+            <label for="faculty_name">Faculty Name</label>
+            <input type="text" id="faculty_name" name="faculty_name"
+                value="{{ faculty_name if faculty_name else session.get('employee_id', '') }}" readonly>
+
+            <label for="section">Section</label>
+            <select id="section" name="section" required>
+                <option value="" disabled selected>Select Section</option>
+                <option value="information-technology">Information Technology</option>
+                <option value="software-engineering">Software Engineering</option>
+            </select>
+
+            <label for="semester">Semester</label>
+            <select id="semester" name="semester" required>
+                <option value="" disabled selected>Select Semester</option>
+                <option value="first">1</option>
+                <option value="second">2</option>
+                <option value="third">3</option>
+                <option value="fourth">4</option>
+            </select>
+
+            <label for="note_file">Upload File (PDF or Word)</label>
+            <input type="file" id="note_file" name="note_file" accept=".pdf,.doc,.docx" required>
+
+            <button type="submit">Upload</button>
+            <a href="{{ url_for('teacher_dashboard') }}" class="dashboard-button">Back</a>
+        </form>
+
+        {% if notes %}
+        <div class="notes-list">
+            <h3>Your Uploaded Notes</h3>
+            {% for note in notes %}
+                <form method="POST" action="{{ url_for('delete_note', note_id=note[0]) }}" class="note-delete-form" onsubmit="return confirm('Delete this note?');">
+                    <button type="submit" class="note-btn">
+                        {{ note[1] }} | {{ note[2] }} | Sem: {{ note[3] }}
+                        <span class="note-info">[Delete]</span>
+                    </button>
+                </form>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <script>
+    document.getElementById('faculty_name').addEventListener('click', function(e) {
+        e.preventDefault();
+        alert("Faculty name cannot be changed");
+    });
+    </script>
+</body>
+</html>

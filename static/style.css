@@ -1,0 +1,539 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #fdfbf7;
+  color: #222;
+
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #20293a;
+  padding: 20px 50px;
+  color: #fff;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #d3dae2;
+  text-decoration: none;
+}
+
+.logo span {
+  color: #00d28d;
+}
+
+.nav-links a {
+  margin: 0 15px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.exam-key {
+  padding: 8px 14px;
+  margin-right: 15px;
+  background-color: white;
+  color: #20293a;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.signup {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: white;
+  border-radius: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.signin {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  padding: 60px 50px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff9ee;
+}
+
+.hero-text {
+  max-width: 50%;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-text span {
+  color: #1b1d2a;
+}
+
+.hero-text p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.hero-buttons button {
+  padding: 12px 20px;
+  margin-right: 15px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.trial {
+  background-color: #1b1d2a;
+  color: white;
+}
+
+.demo {
+  background-color: transparent;
+  border: 2px solid #1b1d2a;
+  color: #1b1d2a;
+}
+
+.note {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+/* this is for sign up drop down on dashboard  */
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Sign Up Button */
+.dropbtn {
+  /* background-color: #3498db; */
+  background-color:#20293a;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+/* Links inside dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Hover effect for links */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Optional: change button color on hover */
+.dropdown:hover .dropbtn {
+  background-color:#20293a;
+}
+
+
+#admin_signin
+/* Container with white background */
+.center-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;  /* centers horizontally */
+  align-items: center;      /* centers vertically */
+  
+}
+
+.form-container {
+  width: 60%;
+  max-width: 500px;
+  background-color: #fff;
+  padding: 40px 50px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  font-family: 'Segoe UI', sans-serif;
+  margin-left: 450px;
+  margin-top: 150px;
+}
+
+form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="number"] {
+ 
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* ======= ADMIN DASHBOARD STYLES ======= */
+.admin-body {
+    padding: 30px;
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.admin-title {
+    text-align: center;
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+/* ======= TABLE STYLES ======= */
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.dashboard-table thead th {
+    background-color: #3498db;
+    color: white;
+    font-weight: 600;
+}
+
+.dashboard-table tr:hover {
+    background-color: #f0f8ff;
+}
+
+/* ======= IMAGE PREVIEW STYLES ======= */
+.image-preview {
+    width: 100px;
+    height: auto;
+    border-radius: 4px;
+    transition: transform 0.2s ease;
+}
+
+.image-preview:hover {
+    transform: scale(1.05);
+}
+
+/* ======= STATUS STYLES ======= */
+.status {
+    font-weight: bold;
+}
+
+.status-approved {
+    color: #27ae60;
+}
+
+.status-declined {
+    color: #c0392b;
+}
+
+.status-pending {
+    color: #e67e22;
+}
+
+/* ======= BUTTON STYLES ======= */
+.action-btn {
+    background-color: #2980b9;
+    color: white;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #1c5980;
+}
+
+.approve-btn {
+    background-color: #27ae60;
+}
+
+.approve-btn:hover {
+    background-color: #1e8449;
+}
+
+.decline-btn {
+    background-color: #e67e22;
+}
+
+.decline-btn:hover {
+    background-color: #ca6f1e;
+}
+
+.remove-btn {
+    background-color: #c0392b;
+}
+
+.remove-btn:hover {
+    background-color: #a93226;
+}
+
+/* ======= HOME BUTTON ======= */
+.btn.home-btn {
+    display: block;
+    margin: 30px auto 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #2ecc71;
+    border-radius: 6px;
+}
+
+.btn.home-btn:hover {
+    background-color: #27ae60;
+}
+
+
+#teacher-signup
+/* Form Container */
+.form-box {
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Label & Inputs */
+.form-box label {
+  display: block;
+  margin: 15px 0 5px;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.form-box input[type="text"],
+.form-box input[type="email"],
+.form-box input[type="password"],
+.form-box input[type="file"],
+.form-box select {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.form-box input:focus,
+.form-box select:focus {
+  border-color: #3498db;
+}
+
+/* Buttons */
+.form-box button[type="submit"],
+.form-box button[type="button"] {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 18px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.form-box button[type="submit"]:hover,
+.form-box button[type="button"]:hover {
+  background-color: #2980b9;
+}
+
+/* Flash messages */
+.flash {
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.flash.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.flash.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.flash.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+/* Video and Canvas */
+#video, #canvas {
+  display: block;
+  margin: 10px auto;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Link to Signin */
+.signin-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #3498db;
+  font-weight: 600;
+}
+
+.signin-link:hover {
+  text-decoration: underline;
+}
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #fffefc;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    font-size: 28px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #fffdf9;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* ======= Submit Button ======= */
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background-color: #2980b9;
+}

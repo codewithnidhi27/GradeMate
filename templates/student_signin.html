@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Sign In</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      background-image: url("/static/background-image.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+
+  <!-- Navbar starts-->
+  <nav class="navbar">
+     
+    <!-- Logo -->
+    <a href="/" class="logo">GradeMate<span>.com</span></a>
+
+    <div class="nav-links">
+      <a href="#">How it works</a>
+      <a href="#">FAQ</a>
+      <a href="#">Resources</a>
+    </div>
+
+    <div class="dropdown">
+    <button class="dropbtn">Sign Up</button>
+    <div class="dropdown-content">
+      <a href="/teacher_signup">I'm a Teacher</a>
+      <a href="/student_signup">I'm a Student</a>
+    </div>
+    </div>
+
+    <div class="nav-buttons">
+      <a href="/admin_signin" class="signin">Admin Sign In</a>
+    </div>
+  </nav> <!-- Navbar ends-->
+
+
+<!-- Student Sign in starts here-->
+<!-- centr-wrapper div -->
+<div class="center-wrapper">
+
+  <!-- form-container div -->
+  <div class="form-container">
+    <form action="/student_signin" method="POST">
+      <h2> Student Login</h2>
+      <label for="usn">USN:</label>
+      <input type="text" id="usn" name="usn" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Sign In</button>
+    </form>
+  </div> <!-- form-container ends-->
+</div> <!-- center-wrapper ends-->
+</body>
+</html>

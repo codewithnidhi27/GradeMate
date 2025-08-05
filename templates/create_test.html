@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Test</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+body {
+      background-image: url("/static/background-image.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      opacity: 0.9;
+    }
+    button[type="submit"] {
+  background-color: #4CAF50; /* Green background */
+  color: white;              /* White text */
+  padding: 12px 24px;        /* Padding for size */
+  border: none;              /* No border */
+  border-radius: 4px;        /* Rounded corners */
+  cursor: pointer;           /* Hand cursor on hover */
+  font-size: 16px;           /* Font size */
+  font-weight: bold;         /* Bold text */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+/* Style for dropdowns */
+select {
+  
+  padding: 12px 16px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+select:focus {
+  border-color: #4CAF50;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+button[type="submit"]:active {
+  background-color: #3e8e41; /* Even darker when pressed */
+}
+.dashboard-button {
+  background-color: #007BFF; /* Red background */
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none; /* Removes underline from link */
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block; /* Allows padding and margin to work like a button */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-button:hover {
+  background-color: #0056b3; /* Darker red on hover */
+}
+
+</style>
+</head>
+
+
+<body>
+  <div class="login-container">
+
+  <!-- Navbar starts-->
+  <nav class="navbar">
+     
+    <!-- Logo -->
+    <a href="/" class="logo">GradeMate<span>.com</span></a>
+
+    <div class="nav-links">
+      <a href="#">How it works</a>
+      <a href="#">FAQ</a>
+      <a href="#">Resources</a>
+    </div>
+
+    <div class="dropdown">
+    <button class="dropbtn">Sign Up</button>
+    <div class="dropdown-content">
+      <a href="/teacher_signup">I'm a Teacher</a>
+      <a href="/signup_student">I'm a Student</a>
+    </div>
+    </div>
+
+    <div class="nav-buttons">
+      <a href="/admin_signin" class="signin">Admin Signin</a>
+    </div>
+  </nav> <!-- Navbar ends-->
+
+<!-- centr-wrapper div -->
+<div class="center-wrapper">
+
+  <!-- form-container div -->
+  <div class="form-container">
+    <form action="/create_test" method="POST">
+      <h2> Create Test</h2>
+      <label>Subject:</label><br>
+      <input type="text" name="subject" required><br><br>
+
+      <label for="section">Branch:</label><br>
+      <select id="section" name="section" required>
+        <option value="information-technology">Information Technology</option>
+        <option value="software-engineering">Software Engineering</option>
+      </select>
+      <br><br>
+
+      <label for="semester">Semester:</label><br>
+      <select id="semester" name="semester" required>
+        <option value="first">1</option>
+        <option value="second">2</option>
+        <option value="third">3</option>
+        <option value="fourth">4</option>
+      </select>
+      <br><br>
+
+
+      <label>Total Time (in minutes):</label><br>
+      <input type="number" name="total_time" min="1" required><br><br>
+
+      <label>Total Number of Questions:</label><br>
+      <input type="number" name="total_questions" min="1" required><br><br>
+
+      <button type="submit" value="Create Test">Create Test</button>
+      <a href="{{ url_for('teacher_dashboard') }}" class="dashboard-button">Back</a>
+
+    </form>
+  </div> <!-- form-container ends-->
+</div> <!-- center-wrapper ends-->
+</body>
+</html>

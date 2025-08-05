@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Sign In</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      background-image: url("/static/background-image.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+
+  <!-- Navbar starts-->
+  <nav class="navbar">
+     
+    <!-- Logo -->
+    <a href="/" class="logo">GradeMate<span>.com</span></a>
+
+    <div class="nav-links">
+      <a href="#">How it works</a>
+      <a href="#">FAQ</a>
+      <a href="#">Resources</a>
+    </div>
+
+    <div class="dropdown">
+    <button class="dropbtn">Sign Up</button>
+    <div class="dropdown-content">
+      <a href="/teacher_signup">I'm a Teacher</a>
+      <a href="/signup_student">I'm a Student</a>
+    </div>
+    </div>
+
+    <div class="nav-buttons">
+      <a href="/admin_signin" class="signin">Admin Sign In</a>
+    </div>
+  </nav> <!-- Navbar ends-->
+
+<!-- centr-wrapper div -->
+<div class="center-wrapper">
+
+  <!-- form-container div -->
+  <div class="form-container">
+    <form action="/admin_signin" method="POST">
+      <h2> Admin Login</h2>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit">Sign In</button>
+    </form>
+  </div> <!-- form-container ends-->
+</div> <!-- center-wrapper ends-->
+
+</body>
+</html>

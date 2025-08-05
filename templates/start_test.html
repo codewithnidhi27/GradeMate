@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            padding: 40px;
+            margin: 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .header span {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 5px;
+        }
+
+        .sub-title {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        form {
+            max-width: 800px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-block {
+            margin-bottom: 25px;
+        }
+
+        .question-block strong {
+            color: #333;
+            font-size: 18px;
+        }
+
+        .question-block small {
+            color: #888;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-top: 8px;
+            resize: vertical;
+        }
+
+        button {
+            display: block;
+            margin: 30px auto 0;
+            padding: 12px 30px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+        textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin-top: 8px;
+        resize: vertical; /* Allow only vertical manual resizing */
+        overflow: hidden; /* Prevent scrollbars */
+    }
+    </style>
+</head>
+<body>
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 16px; margin-bottom: 10px;">
+    <div>Subject: {{ subject }}</div>
+    <div id="timer" style="color: red; font-weight: bold;">Loading timer...</div>
+    <div>Max Time: {{ total_time }} mins</div>
+</div>
+
+<h1 style="text-align: center; margin: 10px 0; font-size: 28px;">Internal Assessment</h1>
+<h3 style="text-align: center;">Answer the following questions</h3>
+
+<div id="timer" style="text-align: center; font-size: 18px; font-weight: bold; margin-bottom: 15px; color: red;"></div>
+
+
+    <form method="POST">
+        {% for q in questions %}
+            <div class="question-block">
+                <strong>Q{{ q[1] }}:</strong> {{ q[2] }}<br>
+                <small>Max Marks: {{ q[3] }}</small><br>
+                <input type="hidden" name="question_id" value="{{ q[0] }}">
+                <textarea name="answer_{{ q[0] }}" rows="4" required></textarea>
+            </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Auto-resizing textareas
+        const textareas = document.querySelectorAll('textarea');
+        textareas.forEach(textarea => {
+            textarea.setAttribute('style', 'height:' + textarea.scrollHeight + 'px;overflow-y:hidden;');
+            textarea.addEventListener('input', function () {
+                this.style.height = 'auto';
+                this.style.height = this.scrollHeight + 'px';
+            });
+        });
+
+        // Live Countdown Timer
+        const timerElement = document.getElementById('timer');
+        let totalSeconds = parseInt('{{ total_time }}') * 60;
+
+        function formatTime(sec) {
+            const hrs = Math.floor(sec / 3600);
+            const mins = Math.floor((sec % 3600) / 60);
+            const secs = sec % 60;
+            return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function updateTimer() {
+            if (totalSeconds <= 0) {
+                clearInterval(timer);
+                timerElement.textContent = "Time's up!";
+                alert("Time is up! Submitting your test.");
+                document.querySelector("form").submit();
+            } else {
+                timerElement.textContent = "Time Left: " + formatTime(totalSeconds);
+                totalSeconds--;
+            }
+        }
+
+        updateTimer(); // Initial call
+        const timer = setInterval(updateTimer, 1000);
+    });
+</script>
+
+</html>

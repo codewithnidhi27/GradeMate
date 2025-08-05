@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>How It Works | GradeMate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f4f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #20293a;
+      color: white;
+      padding: 20px 50px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 1.9rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .intro h2 {
+      font-size: 2rem;
+      color: #283593;
+      margin-bottom: 10px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .card h3 {
+      color: #3949ab;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .card ol {
+      padding-left: 20px;
+    }
+
+    .card ol li {
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #e8eaf6;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .back-btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 24px;
+    font-size: 16px;
+    text-decoration: none;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.03);
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>How GradeMate Works</h1>
+  </header>
+
+  <div class="container">
+    <div class="intro">
+      <h2>Streamline your academic evaluations with GradeMate</h2>
+      <p>Here's how teachers, students, and the admin interact with the platform.</p>
+    </div>
+
+    <div class="cards">
+
+      <!-- Admin Section -->
+      <div class="card">
+        <h3>👩‍💼 Admin</h3>
+        <ol>
+          <li>Reviews and approves new teacher sign-ups</li>
+          <li>Manages faculty, students, and course content</li>
+          <li>Monitors uploads (questions and notes)</li>
+          <li>Ensures platform integrity and smooth workflow</li>
+        </ol>
+      </div>
+
+      <!-- Teacher Section -->
+      <div class="card">
+        <h3>👨‍🏫 Teachers</h3>
+        <ol>
+          <li>Register and wait for admin approval</li>
+          <li>Upload notes and question papers by course</li>
+          <li>Publish tests for students to take</li>
+          <li>Review student answers and assign scores</li>
+        </ol>
+      </div>
+
+      <!-- Student Section -->
+      <div class="card">
+        <h3>🎓 Students</h3>
+        <ol>
+          <li>Login and view dashboard</li>
+          <li>Take tests published by teachers</li>
+          <li>Upload answers and submit responses</li>
+          <li>Access study materials and view results</li>
+        </ol>
+      </div>
+
+    </div>
+    <a href="{{ url_for('home') }}" class="back-btn">Back to Home</a>
+  </div>
+
+  <footer>
+    &copy; 2025 GradeMate. All rights reserved.
+  </footer>
+
+</body>
+</html>

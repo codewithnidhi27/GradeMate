@@ -1,0 +1,145 @@
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    color: #212529;
+  }
+  h2 {
+    color: #495057;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #dee2e6;
+    padding-bottom: 10px;
+  }
+  .alert-info {
+    background-color: #e7f5ff;
+    color: #0a58ca;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #b3d7ff;
+  }
+  form {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #dee2e6;
+  }
+  th {
+    background-color: #e9ecef;
+    font-weight: bold;
+  }
+  tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  tr:hover {
+    background-color: #f1f3f5;
+  }
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  input[type="text"]:focus,
+  input[type="number"]:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  }
+  button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+  }
+  button[type="submit"]:hover {
+    background-color: #218838;
+  }
+  .dashboard-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 0;
+  }
+  .dashboard-button:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<h2>Test: {{ subject }} (Test ID: {{ test_id }})</h2>
+{% if status != 'draft' %}
+  <div class="alert-info">
+    This test is published or closed. You can view but not edit.
+  </div>
+{% endif %}
+
+<form method="POST">
+  <table>
+    <thead>
+      <tr>
+        <th>Question No</th>
+        <th>Question Text</th>
+        <th>Rubric</th>
+        <th>Max Marks</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for q in questions %}
+      <tr>
+        <td>{{ q[1] }}</td> <!-- question_no -->
+        <td>
+          <input type="hidden" name="question_id" value="{{ q[0] }}"> <!-- question_id -->
+          {% if status == 'draft' %}
+            <input type="text" name="question_text_{{ q[0] }}" value="{{ q[2] }}" required>
+          {% else %}
+            {{ q[2] }}
+          {% endif %}
+        </td>
+        <td>
+          {% if status == 'draft' %}
+            <input type="text" name="rubric_{{ q[0] }}" value="{{ q[3] }}">
+          {% else %}
+            {{ q[3] or '-' }}
+          {% endif %}
+        </td>
+        <td>
+          {% if status == 'draft' %}
+            <input type="number" name="max_marks_{{ q[0] }}" value="{{ q[4] }}" required>
+          {% else %}
+            {{ q[4] }}
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% if status == 'draft' %}
+    <button type="submit">Save Changes</button>
+  {% endif %}
+</form>
+<button onclick="window.history.back();" class="dashboard-button">Back</button>
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Results</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f7f7f7; }
+        .container { max-width: 900px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 8px; }
+        h2 { margin-bottom: 24px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
+        th { background: #f0f0f0; }
+
+        .dashboard-button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        margin: 10px 0;
+    }
+        .dashboard-button:hover {
+        background-color: #0056b3;
+    }
+        .download-btn {
+        background: linear-gradient(90deg, #4b6cb7, #182848);
+        color: #fff;
+        padding: 12px 28px;
+        border: none;
+        border-radius: 6px;
+        font-size: 1.1em;
+        font-weight: bold;
+        box-shadow: 0 4px 12px rgba(75,108,183,0.15);
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    .download-btn:hover:enabled {
+        background: linear-gradient(90deg, #182848, #4b6cb7);
+    }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Test Results for Test ID {{ test_id }} : {{subject}}</h2>
+    <p><strong>Total Marks Obtained:</strong> {{ total_obtained }} / {{ total_max }}</p>
+    <p><strong>Percentage:</strong> {{ percentage }}%</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Q.No</th>
+                <th>Question</th>
+                <th>Your Answer</th>
+                <th>Max Marks</th>
+                <th>Score</th>
+                <th>Feedback</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for q in results %}
+            <tr>
+                <td>{{ q[0] }}</td>
+                <td>{{ q[1] }}</td>
+                <td>{{ q[4] }}</td>
+                <td>{{ q[3] }}</td>
+                <td>{{ q[5] }}</td>
+                <td>{{ q[6] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+     <a href="{{ url_for('student_dashboard') }}" class="dashboard-button">Back to Dashboard</a>
+</div>
+<div style="margin-bottom: 24px;">
+    {% if eligible %}
+        <form action="{{ url_for('download_certificate', test_id=test_id) }}" method="post">
+            <button type="submit" class="download-btn">Download Certificate</button>
+        </form>
+    {% else %}
+        <button class="download-btn" disabled style="opacity:0.5; cursor:not-allowed;">Download Certificate</button>
+        <span style="color:#b00; margin-left:10px;">(Minimum 36% required)</span>
+    {% endif %}
+</div>
+
+</body>
+</html>

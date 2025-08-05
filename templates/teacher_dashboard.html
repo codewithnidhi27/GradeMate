@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    /* Base styles */
+    body {
+      background-image: url("/static/background-image.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    
+    /* Main content */
+    .center-wrapper {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      width: 90%;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 40px 30px;
+      text-align: center;
+      backdrop-filter: blur(5px);
+    }
+    h1 {
+      color: rgb(16, 79, 146);
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+    .welcome-text {
+      color: #555;
+      margin-bottom: 30px;
+      font-size: 1.2rem;
+    }
+    .dashboard-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(250px, 2fr));
+      gap: 45px;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .dashboard-button {
+      background:rgb(16, 79, 146);
+      color: white;
+      padding: 25px 20px;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .dashboard-button .icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    .dashboard-button:hover {
+      background:rgb(11, 49, 90);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .dashboard-buttons {
+        grid-template-columns: 1fr;
+      }
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
+      .nav-links, .nav-buttons {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    .logout-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  .logout-button {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  .logout-button:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+  }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="/" class="logo">GradeMate<span>.com</span></a>
+    <div class="nav-links">
+      <a href="/how_it_works">How it works</a>
+      <a href="#">FAQ</a>
+      <a href="resources">Resources</a>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">Sign Up</button>
+      <div class="dropdown-content">
+        <a href="/teacher_signup">I'm a Teacher</a>
+        <a href="/student_signup">I'm a Student</a>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <a href="/admin_signin" class="signin">Admin Sign In</a>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <div class="center-wrapper">
+    <h1>Welcome, Teacher {{ employee_id }}!</h1>
+    <p class="welcome-text">Manage your classes, tests, and students with ease.</p>
+    <div class="dashboard-buttons">
+      <a href="{{ url_for('create_test') }}" class="dashboard-button">
+        <span class="icon">📝</span>
+        Create Test
+      </a>
+      <a href="{{ url_for('my_tests') }}" class="dashboard-button">
+        <span class="icon">📋</span>
+        View Tests
+      </a>
+      <a href="{{ url_for('view_students') }}" class="dashboard-button">
+        <span class="icon">👨‍🎓</span>
+        View Students
+      </a>
+      <a href="/upload_notes" class="dashboard-button">
+        <span class="icon">📚</span>
+        Upload Notes
+      </a>
+    </div>
+    <div class="logout-container">
+  <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+  </div>
+  </div>
+</body>
+</html>

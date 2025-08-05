@@ -1,0 +1,114 @@
+<html>
+<head>
+  <title>Student Signup</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <style>
+    body {
+      background-image: url("/static/background-image.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      opacity: 0.9;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-box {
+        padding: 20px;
+        max-width: 95vw;
+      }
+</style>
+
+</head>
+
+<body>
+      <!-- Navbar -->
+  <nav class="navbar">
+    <a href="/" class="logo">GradeMate<span>.com</span></a>
+    <div class="nav-links">
+      <a href="#">How it works</a>
+      <a href="#">FAQ</a>
+      <a href="#">Resources</a>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">Sign Up</button>
+      <div class="dropdown-content">
+        <a href="/teacher_signup">I'm a Teacher</a>
+        <a href="/student_signup">I'm a Student</a>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <a href="/admin_signin" class="signin">Admin Sign In</a>
+    </div>
+  </nav>
+
+
+<div class="form-box">  
+
+<div class="center-wrapper">
+  <div class="form-container">
+    <h2> Student Sign up</h2>
+    <form action="/student_signup" method="POST">
+    <div class ="form-grid">
+      
+
+      <div class ="form-group">
+      <label for="username">Full Name:</label>
+      <input type="text" id="username" name="username" required>
+      </div>
+
+      <div class ="form-group">
+      <label for="usn">USN:</label>
+      <input type="text" id="usn" name="usn" required>
+      </div>
+
+      <div class ="form-group">
+      <label for="email">Email ID:</label>
+      <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class ="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      </div>
+
+      <div class ="form-group">
+      <label for="confirm-password">Re enter Password:</label>
+      <input type="password" id="confirm-password" name="confirm-password" required>
+      </div>
+
+       <div class ="form-group">
+        <label for="sec">Section</label>
+            <select name="section" required>
+              <option value="" disabled selected>Select Section</option>
+              <option value="information-technology">Information Technology</option>
+              <option value="software-engineering">Software Engineering</option>
+            </select>
+        </div>
+        
+        <div class ="form-group">
+         <label for="semester">Semester:</label>
+            <select name="semester" required>
+              <option value="" disabled selected>Select Semester</option>
+              <option value="first">1</option>
+              <option value="second">2</option>
+              <option value="third">3</option>
+              <option value="fourth">4</option>
+            </select>
+        </div>
+
+      <button type="submit">Create Account</button>
+        </div>
+    </form>
+     <a class="signin-link" href="{{ url_for('student_signin') }}">Already have an account? Sign In</a>
+  </div>
+</div>
+</div>
+</body>
+</html>

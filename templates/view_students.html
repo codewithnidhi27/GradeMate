@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Students</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .filter-form {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      max-width: 500px;
+    }
+    .filter-form label, .filter-form select, .filter-form button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+    }
+    .filter-form select, .filter-form button {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    .filter-form button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .filter-form button:hover {
+      background-color: #0056b3;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #007BFF;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    .not-attended {
+      border: 2px solid #ff4444; /* Red border */
+      background-color: #ffeeee; /* Optional: light red background */
+    }
+    .dashboard-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 0;
+  }
+  .dashboard-button:hover {
+    background-color: #0056b3;
+  }
+  </style>
+</head>
+<body>
+  <div class="filter-form">
+    <form method="POST" action="{{ url_for('view_students') }}">
+      <label for="section">Section:</label>
+      <select name="section" id="section" required>
+        <option value="information-technology">Information Technology</option>
+        <option value="software-engineering">Software Engineering</option>
+      </select>
+      <label for="semester">Semester:</label>
+      <select name="semester" id="semester" required>
+        <option value="first">1</option>
+        <option value="second">2</option>
+        <option value="third">3</option>
+        <option value="fourth">4</option>
+      </select>
+      <button type="submit">Filter</button>
+    </form>
+  </div>
+
+  {% if show_table %}
+    <table>
+      <thead>
+        <tr>
+          <th>USN</th>
+          <th>Name</th>
+          <th>Section</th>
+          <th>Semester</th>
+          {% for subject in subjects %}
+            <th>{{ subject }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in students %}
+          <tr>
+            <td>{{ student.usn }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.section }}</td>
+            <td>{{ student.semester }}</td>
+            {% for subject in subjects %}
+              <td {% if student.subjects[subject] == "Not Attended" %}class="not-attended"{% endif %}>
+                {{ student.subjects[subject] }}
+              </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+  <a href="{{ url_for('teacher_dashboard') }}" class="dashboard-button">Back to Dashboard</a>
+
+</body>
+</html>

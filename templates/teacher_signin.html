@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Teacher Sign-in</title>
+      <style>
+    body {
+      background-image: url("/static/background-image.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      opacity: 0.9;
+    }
+  </style>
+  <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="/" class="logo">GradeMate<span>.com</span></a>
+    <div class="nav-links">
+      <a href="#">How it works</a>
+      <a href="#">FAQ</a>
+      <a href="#">Resources</a>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">Sign Up</button>
+      <div class="dropdown-content">
+        <a href="/teacher_signup">I'm a Teacher</a>
+        <a href="/student_signup">I'm a Student</a>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <a href="/admin_signin" class="signin">Admin Sign In</a>
+    </div>
+  </nav>
+
+   
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li><strong>{{ category.capitalize() }}:</strong> {{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <div class="center-wrapper">
+      <div class="form-container">
+         <h2>Teacher Sign-in</h2>
+    <form action="{{ url_for('teacher_signin') }}" method="POST">
+        <label for="employee_id">Employee ID:</label><br />
+        <input type="text" id="employee_id" name="employee_id" required /><br /><br />
+
+        <label for="password">Password:</label><br />
+        <input type="password" id="password" name="password" required /><br /><br />
+
+        <button type="submit">Sign In</button>
+    </form>
+
+    <p>Don't have an account? <a href="{{ url_for('teacher_signup') }}">Sign up here</a></p>
+  </div>
+</div>
+</body>
+</html>

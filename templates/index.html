@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Exam Dashboard</title>
+  <link rel="stylesheet" href="static/style.css">
+  <!-- Correct Botpress Webchat script -->
+  <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="/" class="logo">GradeMate<span>.com</span></a>
+    <div class="nav-links">
+      <a href="/how_it_works">How it works</a>
+      <a href="#">FAQ</a>
+      <a href="resources">Resources</a>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">Sign Up</button>
+      <div class="dropdown-content">
+        <a href="/teacher_signup">I'm a Teacher</a>
+        <a href="/student_signup">I'm a Student</a>
+      </div>
+    </div>
+    <div class="nav-buttons">
+      <a href="/admin_signin" class="signin">Admin Sign In</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Descriptive Answer <br><span>Evaluation System</span></h1>
+      <p>Empowering education through intelligent evaluation — where every word is understood, not just measured. Ollama Mistral</p>
+      <div class="hero-buttons">
+        <button class="trial">Sign Up for Free</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="static/dashboard.jpg" alt="Dashboard Illustration">
+    </div>
+  </section>
+  <footer style="text-align: center; margin-top: 30px; padding: 10px; background: #f7f7f7;">
+  <p>© Shrinidhi Hegde. All rights reserved.</p>
+</footer>
+
+
+  <!-- Correct Botpress Webchat initialization -->
+  <script>
+    window.botpressWebChat.init({
+      botId: "3985a10e-a794-41e1-ab95-04fef0689c7b",
+      hostUrl: "https://cdn.botpress.cloud/webchat/v1",
+      messagingUrl: "https://messaging.botpress.cloud",
+      clientId: "56ece39d-e78e-46ec-8cbd-1622dae0d6d7"
+    });
+  </script>
+</body>
+</html>
